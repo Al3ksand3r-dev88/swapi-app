@@ -1,32 +1,43 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <back-drop />
+    <router-view />
   </div>
 </template>
 
+<script>
+import BackDrop from "@/components/BackDrop.vue";
+export default {
+  name: "app",
+  components: {
+    BackDrop,
+  },
+};
+</script>
+
 <style lang="scss">
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap");
+body {
+  font-family: "Roboto", sans-serif;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  width: 100%;
 }
 
-#nav {
-  padding: 30px;
+::-webkit-scrollbar {
+  width: 5px;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+::-webkit-scrollbar-track-piece {
+  background: #ecedf2;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+::-webkit-scrollbar-thumb {
+  background: #ccb2fc;
 }
 </style>
