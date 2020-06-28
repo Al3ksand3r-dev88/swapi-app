@@ -2,21 +2,20 @@
   <div
     class="modal"
     v-if="character"
-    :class="[$route.name == 'modal' ? 'animate__animated animate__zoomIn' : '']"
+    :class="[$route.name == 'modal' ? 'animate__animated animate__zoomInDown' : '']"
   >
     <span
       class="btn-close"
       @click="$router.go(-1)"
       :tabindex="0"
       @keyup.enter="$router.go(-1)"
-      >&times;</span
-    >
+    >&times;</span>
     <ul class="modal-content">
       <h1>Character information</h1>
       <li>Name: {{ character.name }}</li>
       <li>Gender: {{ character.gender }}</li>
       <li>Height: {{ character.height }} cm</li>
-      <li>Weight: {{ character.mass }} kg</li>
+      <li>Weight: {{ character.mass}} kg</li>
     </ul>
   </div>
 </template>
@@ -25,8 +24,8 @@
 export default {
   name: "modal",
   props: {
-    character: Object,
-  },
+    character: Object
+  }
 };
 </script>
 
@@ -69,8 +68,10 @@ export default {
     }
   }
 
-  &.animate__animated.animate__zoomIn {
+  &.animate__animated.animate__zoomInDown {
     animation-duration: 0.3s;
+    top: 50%;
+    left: 50%;
   }
 }
 

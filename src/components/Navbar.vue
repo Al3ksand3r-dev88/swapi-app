@@ -6,7 +6,7 @@
       <div />
       <div />
     </div>
-    <h1>Swapi API</h1>
+    <router-link to="/">Swapi API</router-link>
     <i class="fas fa-search" @click="openFilter"></i>
   </nav>
 </template>
@@ -16,13 +16,13 @@ import SearchForm from "@/components/SearchForm.vue";
 export default {
   name: "navbar",
   components: {
-    SearchForm,
+    SearchForm
   },
   methods: {
     openFilter() {
       this.$store.commit("TOGGLE_FILTER");
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -53,8 +53,10 @@ export default {
     }
   }
 
-  h1 {
+  a {
+    color: #fff;
     letter-spacing: 1px;
+    text-decoration: none;
     text-transform: uppercase;
   }
 

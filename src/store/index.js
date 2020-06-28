@@ -15,8 +15,6 @@ export default new Vuex.Store({
   mutations: {
     SET_CHARACTERS(state, result) {
       state.characters = result;
-      console.log(state.characters);
-      localStorage.setItem("result", JSON.stringify(result));
     },
     SET_TOTAL_COUNT(state, total) {
       state.totalCount = total;
@@ -44,8 +42,8 @@ export default new Vuex.Store({
     },
   },
   getters: {
-    hasCharacters() {
-      return !!JSON.parse(localStorage.getItem("result"));
+    hasCharacters(state) {
+      return !!state.characters;
     },
     hasNextButton(state) {
       return state.totalCount / 10;

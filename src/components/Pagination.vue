@@ -1,20 +1,18 @@
 <template>
   <div class="pagination">
-    <router-link
-      v-show="page != 1"
-      :to="{ name: 'characters', query: { page: page - 1 } }"
-      ><i class="fas fa-chevron-left"></i
-    ></router-link>
+    <router-link v-show="page != 1" :to="{ name: 'characters', query: { page: page - 1 } }">
+      <i class="fas fa-chevron-left"></i>
+    </router-link>
     <router-link
       v-show="page <= hasNextButton"
       :to="{ name: 'characters', query: { page } }"
-      >{{ page }}</router-link
-    >
+    >{{ page }}</router-link>
     <router-link
       v-show="page <= hasNextButton"
       :to="{ name: 'characters', query: { page: page + 1 } }"
-      ><i class="fas fa-chevron-right"></i
-    ></router-link>
+    >
+      <i class="fas fa-chevron-right"></i>
+    </router-link>
   </div>
 </template>
 
@@ -23,9 +21,9 @@ import { mapGetters } from "vuex";
 export default {
   name: "pagination",
   props: {
-    page: Number,
+    page: Number
   },
-  computed: { ...mapGetters(["hasNextButton"]) },
+  computed: { ...mapGetters(["hasNextButton"]) }
 };
 </script>
 
@@ -48,6 +46,7 @@ a {
   justify-content: center;
 
   &:nth-child(odd) {
+    font-size: 1rem;
     background: lighten(#707486, 30%);
   }
 }

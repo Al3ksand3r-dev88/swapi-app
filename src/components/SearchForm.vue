@@ -1,5 +1,6 @@
 <template>
   <input
+    :spellcheck="false"
     type="text"
     placeholder="Filter character by name"
     v-model="filterValue"
@@ -13,18 +14,18 @@ import { mapState } from "vuex";
 export default {
   name: "SearchForm",
   computed: {
-    ...mapState(["toggleFilter"]),
+    ...mapState(["toggleFilter"])
   },
   data() {
     return {
-      filterValue: null,
+      filterValue: null
     };
   },
   methods: {
     setFilter() {
       this.$store.commit("SET_FILTER", this.filterValue);
-    },
-  },
+    }
+  }
 };
 </script>
 

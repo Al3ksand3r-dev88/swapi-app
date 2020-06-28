@@ -6,19 +6,15 @@
       </header>
       <main>
         <section class="top">
-          <p v-show="$route.name == 'home'">
-            Click the button below and see all Starwars characters!
-          </p>
-          <Pagination v-show="hasCharacters" :page="page" />
+          <p v-show="$route.name == 'home'">Click the button below and see all Starwars characters!</p>
+          <Pagination v-show="$route.name == 'characters'" :page="page" />
         </section>
         <article>
           <button
             class="btn-primary"
             @click="getAllCharacters"
             v-show="$route.name == 'home'"
-          >
-            {{ isLoading ? "loading..." : "Get all characters" }}
-          </button>
+          >{{ isLoading ? "loading..." : "Get all characters" }}</button>
           <router-view :key="$route.fullPath" />
         </article>
       </main>
@@ -34,23 +30,23 @@ export default {
   name: "home",
   components: {
     Navbar,
-    Pagination,
+    Pagination
   },
   methods: {
     getAllCharacters() {
       this.$store
         .dispatch("GET_ALL", this.page)
         .then(() => this.$router.push({ name: "characters" }))
-        .catch((err) => console.log(err));
-    },
+        .catch(err => console.log(err));
+    }
   },
   computed: {
     ...mapGetters(["hasCharacters"]),
     ...mapState(["isLoading"]),
     page() {
       return parseInt(this.$route.query.page) || 1;
-    },
-  },
+    }
+  }
 };
 </script>
 
@@ -124,7 +120,15 @@ export default {
 @media screen and (min-width: 500px) {
   .container {
     .list-container {
-      height: 700px;
+      height: 850px;
+    }
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    .list-container {
+      height: 93vh;
     }
   }
 }
