@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <div class="list-container">
+      <side-menu />
       <header>
         <Navbar />
       </header>
@@ -26,11 +27,13 @@
 import { mapGetters, mapState } from "vuex";
 import Pagination from "@/components/Pagination.vue";
 import Navbar from "@/components/Navbar.vue";
+import SideMenu from "@/components/SideMenu.vue";
 export default {
   name: "home",
   components: {
     Navbar,
-    Pagination
+    Pagination,
+    SideMenu
   },
   methods: {
     getAllCharacters() {
@@ -54,7 +57,7 @@ export default {
 .container {
   height: 100vh;
   display: flex;
-  background: url("../assets/img/bg-bubbles.jpg") no-repeat center center/cover;
+  background: url("../assets/img/bg-abstract.jpg") no-repeat center center/cover;
   &::before {
     top: 0;
     right: 0;
@@ -85,6 +88,7 @@ export default {
 
       p {
         color: #aa7fe9;
+        text-align: center;
       }
     }
 

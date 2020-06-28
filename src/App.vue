@@ -10,8 +10,8 @@ import BackDrop from "@/components/BackDrop.vue";
 export default {
   name: "app",
   components: {
-    BackDrop,
-  },
+    BackDrop
+  }
 };
 </script>
 

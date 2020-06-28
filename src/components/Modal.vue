@@ -39,7 +39,6 @@ export default {
   display: flex;
   padding: 0 2rem;
   position: fixed;
-  border-radius: 5px;
   background: #fff;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 30px rgba(#000, 0.1);
@@ -79,6 +78,7 @@ export default {
   .modal {
     max-width: 1000px;
     max-height: 80%;
+    border-radius: 5px;
 
     .btn-close {
       right: 2rem;

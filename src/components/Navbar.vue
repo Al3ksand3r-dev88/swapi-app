@@ -1,27 +1,46 @@
 <template>
   <nav class="navbar-container">
     <search-form />
-    <div class="burger">
+    <div class="burger" @click="toggleSideMenu" :class="{ isMenuOpen }">
       <div />
       <div />
       <div />
     </div>
-    <router-link to="/">Swapi API</router-link>
-    <i class="fas fa-search" @click="openFilter"></i>
+    <router-link to="/" @click.native="reload" :class="{'paddingRight' : hasCharacters}">
+      Swapi API
+      <br />
+      <span>Created by Aleksander</span>
+    </router-link>
+    <Spinner v-if="isLoading" />
+    <i v-else class="fas fa-search" @click="openFilter" v-show="hasCharacters"></i>
   </nav>
 </template>
 
 <script>
 import SearchForm from "@/components/SearchForm.vue";
+import Spinner from "@/components/Spinner.vue";
+import { mapGetters, mapState } from "vuex";
 export default {
   name: "navbar",
   components: {
-    SearchForm
+    SearchForm,
+    Spinner
   },
   methods: {
     openFilter() {
       this.$store.commit("TOGGLE_FILTER");
+      this.$store.getters.forceCloseOfMenu;
+    },
+    toggleSideMenu() {
+      this.$store.commit("TOGGLE_SIDE_MENU");
+    },
+    reload() {
+      location.reload().then(() => this.$router.push({ name: "home" }));
     }
+  },
+  computed: {
+    ...mapGetters(["hasCharacters"]),
+    ...mapState(["isLoading", "isMenuOpen"])
   }
 };
 </script>
@@ -48,16 +67,44 @@ export default {
     div {
       width: 25px;
       height: 2px;
-      margin: 6px 0;
+      margin: 5px 0;
       background: #fff;
+    }
+
+    &.isMenuOpen {
+      transition: 0.3s;
+      transform: rotate(180deg);
+      div {
+        transition: 0.3s;
+        &:nth-child(1) {
+          transform: rotate(45deg) translate(5px, 5px);
+        }
+        &:nth-child(2) {
+          opacity: 0;
+        }
+        &:nth-child(3) {
+          transform: rotate(-45deg) translate(5px, -5px);
+        }
+      }
     }
   }
 
   a {
+    margin: auto;
     color: #fff;
+    text-align: center;
+    padding-right: 2rem;
     letter-spacing: 1px;
     text-decoration: none;
     text-transform: uppercase;
+
+    span {
+      font-size: 0.7rem;
+      text-transform: capitalize;
+    }
+    &.paddingRight {
+      padding-right: 0;
+    }
   }
 
   i {
